@@ -1,8 +1,11 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormPage {
+
     public static void submitForm(WebDriver driver)
     {
         //Pregunta 1 Radio 10
@@ -37,9 +40,32 @@ public class FormPage {
         driver.findElement(By.xpath("((//span[@class= \"radio-button-display \"]))[63]")).click();
         driver.findElement(By.xpath("((//span[@class= \"radio-button-display \"]))[65]")).click();
         driver.findElement(By.xpath("((//span[@class= \"radio-button-display \"]))[74]")).click();
-        driver.findElement(By.xpath("//div/button[contains(text(),'Finalizar')]")).click();
+
 
 
     }
 
+    public  static void loginGanaNet(WebDriver driver, String url, String codigoPersona, String pass){
+        driver.get(url);
+        driver.findElement(By.xpath("((//input[@class= \"form-control ng-untouched ng-pristine ng-valid\"]))[1]")).sendKeys(codigoPersona);
+        driver.findElement(By.xpath("((//button[@type= \"submit\"]))[1]")).click();
+
+        WebDriverWait wait = new WebDriverWait(driver, 15);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("((//input[@type= \"password\"]))[1]")));
+        driver.findElement(By.xpath("((//input[@type= \"password\"]))[1]")).sendKeys(pass);
+        driver.findElement(By.xpath("((//button[@type= \"submit\"]))[1]")).click();
+    }
+    public static void validarLogin (WebDriver driver, String nombrePersona) {
+
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until((ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[contains(text(),'"+nombrePersona+"')]"))));
+
+    }
+
+
+    public static void dynamicXpathTeamName(String teamName, WebDriver driver){
+        driver.findElement(By.xpath("//div/button[contains(text(),'"+teamName+"')]")).click();
+
+
+    }
 }
