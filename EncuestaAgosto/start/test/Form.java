@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 
+
 public class Form {
     public static void main(String[] args) {
 
@@ -18,6 +19,8 @@ public class Form {
 
         formPage.submitForm(driver);
 
+
+        //formPage.dynamicXpathTeamName("Otros", driver);
         driver.quit();
     }
 
@@ -33,4 +36,6 @@ public class Form {
     {
         return driver.findElement(By.className("alert")).getText();
     }
+
+
 }
